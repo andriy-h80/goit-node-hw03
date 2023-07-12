@@ -9,9 +9,7 @@ const getListContacts = async (req, res) => {
 
 const getContactById = async (req, res) => {
   const {id} = req.params;
-  console.log("before")
   const result = await Contact.findById(id);
-  console.log("after")
   if(!result){
     throw HttpError(404, "Not found");
   }
