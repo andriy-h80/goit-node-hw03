@@ -32,7 +32,7 @@ const addSchema = Joi.object({
     email: Joi.string().required().messages({
         "any.required": "missing required email field",
     }),
-    phone: Joi.string().required().messages({
+    phone: Joi.string().required().regex(/^[(]\d{3}[)]\s\d{3}-\d{4}$/).messages({
         "any.required": "missing required phone field",
     }),
     favorite: Joi.boolean(),
