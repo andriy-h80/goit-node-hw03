@@ -2,6 +2,9 @@ const {HttpError} = require("../helpers");
 
 const validateBody = schema => {
     const func = (req, res, next) => {
+        if(req.body.favorite === undefined){
+            next(HttpError(400, "missing field favorite"));
+        }
         if(Object.keys(req.body).length === 0){
             next(HttpError(400, "missing field"));
         }
@@ -10,7 +13,7 @@ const validateBody = schema => {
             const fieldName = error.details[0].context.label;
             next(HttpError(400, `missing required ${fieldName} field`));
         }
-        next()
+        next();
     };
 
     return func;
